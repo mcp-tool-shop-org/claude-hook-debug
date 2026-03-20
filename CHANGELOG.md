@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## 1.0.1 (2026-03-20)
+
+### Added
+
+- CI workflow with vitest coverage + codecov upload
+- Landing page (site-theme) + Starlight handbook (5 pages)
+- Coverage badge in README
+- `--help` and `--version` CLI flags
+- vitest.config.ts scoping coverage to src/
+
+### Fixed
+
+- Exit code logic moved outside format branch so JSON mode also returns exit code 1 on errors
+
 ## 1.0.0 (2026-03-19)
 
 ### Added
