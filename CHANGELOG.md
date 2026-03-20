@@ -1,0 +1,27 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/),
+and this project adheres to [Semantic Versioning](https://semver.org/).
+
+## 1.0.0 (2026-03-19)
+
+### Added
+
+- Settings scanner — reads all 4 Claude Code settings scopes (managed, user, project, local)
+- Plugin state extraction — tracks enabled/disabled state across scopes with merge resolution
+- Hook extraction — maps all user-defined hooks by event type with provenance
+- 8 diagnostic rules detecting known Claude Code bugs:
+  - `GHOST_HOOK_PREVIEW` — disabled claude-preview plugin still fires hooks (#19893)
+  - `GHOST_HOOK_GENERIC` — any disabled plugin with potential ghost hooks
+  - `LOCAL_ONLY_PLUGINS` — enabledPlugins in local-only settings silently dropped (#25086)
+  - `SCOPE_CONFLICT` — plugin enabled/disabled conflict across scopes
+  - `STOP_CONTINUE_LOOP` — Stop hook with continue:true causes infinite loop (#1288)
+  - `DISABLE_ALL_HOOKS_ACTIVE` — disableAllHooks suppresses all hooks including managed
+  - `BROKEN_SETTINGS_JSON` — invalid JSON silently disables all settings from that file
+  - `LARGE_SETTINGS_FILE` — settings file >100KB may cause slow startup
+  - `PLUGIN_HOOKS_INVISIBLE` — no user hooks but plugins enabled
+- CLI with ANSI table and JSON output formats
+- Library API (`debug()` function) for programmatic use
+- 24 tests across 2 test suites

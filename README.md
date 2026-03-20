@@ -1,4 +1,16 @@
-# claude-hook-debug
+<p align="center">
+  <a href="https://mcp-tool-shop-org.github.io/claude-hook-debug/">
+    <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/claude-hook-debug/readme.png" width="400" alt="claude-hook-debug" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/mcp-tool-shop-org/claude-hook-debug/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/claude-hook-debug/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://codecov.io/gh/mcp-tool-shop-org/claude-hook-debug"><img src="https://codecov.io/gh/mcp-tool-shop-org/claude-hook-debug/branch/main/graph/badge.svg" alt="Coverage" /></a>
+  <a href="https://www.npmjs.com/package/@mcptoolshop/claude-hook-debug"><img src="https://img.shields.io/npm/v/@mcptoolshop/claude-hook-debug" alt="npm" /></a>
+  <a href="https://github.com/mcp-tool-shop-org/claude-hook-debug/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License" /></a>
+  <a href="https://mcp-tool-shop-org.github.io/claude-hook-debug/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page" /></a>
+</p>
 
 Diagnostic CLI for Claude Code hook issues. Detects ghost hooks from disabled plugins, scope conflicts, misconfigured settings, and known Claude Code bugs.
 
@@ -68,12 +80,15 @@ console.log(report.plugins);
 // [{ pluginId: 'claude-preview@...', mergedEnabled: false, scopes: [...] }]
 ```
 
-## Security
+## Security & Threat Model
 
-- **Read-only.** Reads settings files, never modifies them.
-- **No network.** No API calls, no telemetry, no phone-home.
-- **No secrets.** Does not read or log env var values, API keys, or tokens.
-- **Zero dependencies.** Only Node.js built-ins.
+**What it touches:** Claude Code settings files (`~/.claude/settings.json`, `.claude/settings.json`, `.claude/settings.local.json`, `~/.claude/managed-settings.json`). All reads are read-only — the tool never modifies any file.
+
+**What it does NOT touch:** No API keys, tokens, env var values, or credentials are read or logged. The `env` block in settings is completely ignored. No files outside Claude Code settings paths are accessed.
+
+**Permissions required:** Filesystem read access to `~/.claude/` and the project's `.claude/` directory. No elevated permissions, no network access, no shell execution.
+
+**No telemetry.** No analytics. No phone-home. No data collection of any kind. Zero production dependencies.
 
 ---
 
