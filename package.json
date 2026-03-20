@@ -1,6 +1,6 @@
 {
   "name": "@mcptoolshop/claude-hook-debug",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Diagnostic CLI for Claude Code hook issues — detects ghost hooks, scope conflicts, and plugin lifecycle bugs",
   "type": "module",
   "main": "./dist/index.js",
